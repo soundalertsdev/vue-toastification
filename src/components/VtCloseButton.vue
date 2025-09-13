@@ -28,7 +28,7 @@ interface CloseButtonProps {
 const props = withDefaults(defineProps<CloseButtonProps>(), {
   component: TOAST_DEFAULTS.closeButton,
   classNames: TOAST_DEFAULTS.closeButtonClassName,
-  ariaLabel: TOAST_DEFAULTS.accessibility()["closeButtonLabel"],
+  ariaLabel: TOAST_DEFAULTS.accessibility["closeButtonLabel"],
   showOnHover: TOAST_DEFAULTS.showCloseButtonOnHover,
 })
 
