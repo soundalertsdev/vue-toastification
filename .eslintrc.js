@@ -3,11 +3,10 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    "vue/setup-compiler-macros": true,
   },
   extends: [
     "eslint:recommended",
-    "plugin:vue/vue3-recommended",
+    "plugin:vue/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:import/recommended",
@@ -23,6 +22,8 @@ module.exports = {
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
     "@typescript-eslint/no-empty-function": ["off"],
+    "@typescript-eslint/no-unsafe-function-type": ["off"],
+    "@typescript-eslint/no-empty-object-type": ["off"],
     "import/order": [
       "error",
       {
@@ -65,6 +66,7 @@ module.exports = {
       { allow: ["**/*.css", "**/*.scss", "**/*.sass"] },
     ],
     "import/no-named-default": "error",
+    "vue/prefer-import-from-vue": "off",
   },
   overrides: [
     {

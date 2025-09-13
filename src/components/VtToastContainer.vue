@@ -80,6 +80,7 @@ const containerProps = computed(() => ({
   ...props,
   ...overrideContainerProps,
 }))
+// eslint-disable-next-line vue/no-dupe-keys
 const defaultToastProps = computed(() => ({
   eventBus: containerProps.value.eventBus,
   position: containerProps.value.position,
@@ -134,7 +135,9 @@ const addToast = (toastProps: ToastOptionsAndContent) => {
   >
 
   toast = filterBeforeCreate(toast, toastArray.value)
-  toast && setToast(toast)
+  if (toast) {
+    setToast(toast)
+  }
 }
 
 const dismissToast: ToastInterface["dismiss"] = id => {

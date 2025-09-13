@@ -5,3 +5,4 @@ dist/
 coverage/
 .github/
 .vscode/
+vite.config.ts

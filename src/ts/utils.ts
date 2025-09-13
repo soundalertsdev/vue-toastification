@@ -12,7 +12,6 @@ interface DictionaryLike {
   [index: string]: unknown
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 const isFunction = (value: unknown): value is Function =>
   typeof value === "function"
 

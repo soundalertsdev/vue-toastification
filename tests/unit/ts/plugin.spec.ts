@@ -7,7 +7,6 @@ import * as useToast from "../../../src/ts/composables/useToast"
 import { globalEventBus } from "../../../src/ts/eventBus"
 import * as plugin from "../../../src/ts/plugin"
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type AsFunction<T> = T extends Function ? T : never
 
 const pluginFunction = plugin.VueToastificationPlugin as AsFunction<
