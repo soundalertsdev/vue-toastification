@@ -7,7 +7,8 @@ import VtProgressBar from "../../../src/components/VtProgressBar.vue"
 import VtToast from "../../../src/components/VtToast.vue"
 import VtToastContainer from "../../../src/components/VtToastContainer.vue"
 import { EVENTS, POSITION, TYPE } from "../../../src/ts/constants"
-import { asContainerProps } from "../../../src/ts/utils"
+import { TOAST_CONTAINER_DEFAULTS } from "../../../src/ts/propValidators"
+import { asContainerProps, removeUndefined } from "../../../src/ts/utils"
 
 import type { PluginOptions } from "../../../src/types/plugin"
 
@@ -15,8 +16,9 @@ const mountToastContainer = async (props: PluginOptions = {}) => {
   const eventBus = new EventBus()
   const toast = createToastInstance(eventBus)
   const options: PluginOptions = {
+    ...TOAST_CONTAINER_DEFAULTS,
     eventBus,
-    ...props,
+    ...removeUndefined(props),
   }
   const wrapper = mount(VtToastContainer, {
     props: { container: undefined, ...asContainerProps(options) },
@@ -129,7 +131,6 @@ describe("VtToastContainer", () => {
       await nextTick()
 
       expect(wrapper.findAllComponents(VtToast).length).toBe(1)
-      // Test with startsWith as there is a "x" from
       expect(wrapper.findComponent(VtToast).text()).toEqual(`${message} close`)
     })
 
@@ -143,7 +144,6 @@ describe("VtToastContainer", () => {
       await nextTick()
 
       expect(wrapper.findAllComponents(VtToast).length).toBe(1)
-      // Test with startsWith as there is a "x" from
       expect(wrapper.findComponent(VtToast).text()).toEqual(`${message} close`)
     })
 

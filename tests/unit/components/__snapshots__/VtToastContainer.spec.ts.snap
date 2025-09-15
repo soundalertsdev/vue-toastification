@@ -5,7 +5,15 @@ exports[`VtToastContainer snapshots with classes 1`] = `
   
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container top-left myclass"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -13,7 +21,15 @@ exports[`VtToastContainer snapshots with classes 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container top-center myclass"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -21,7 +37,15 @@ exports[`VtToastContainer snapshots with classes 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container top-right myclass"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -29,7 +53,15 @@ exports[`VtToastContainer snapshots with classes 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container bottom-left myclass"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -37,7 +69,15 @@ exports[`VtToastContainer snapshots with classes 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container bottom-center myclass"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -45,7 +85,15 @@ exports[`VtToastContainer snapshots with classes 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container bottom-right myclass"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -60,7 +108,15 @@ exports[`VtToastContainer snapshots with default value 1`] = `
   
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container top-left"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -68,7 +124,15 @@ exports[`VtToastContainer snapshots with default value 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container top-center"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -76,7 +140,15 @@ exports[`VtToastContainer snapshots with default value 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container top-right"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -84,7 +156,15 @@ exports[`VtToastContainer snapshots with default value 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container bottom-left"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -92,7 +172,15 @@ exports[`VtToastContainer snapshots with default value 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container bottom-center"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -100,7 +188,15 @@ exports[`VtToastContainer snapshots with default value 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container bottom-right"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -115,7 +211,15 @@ exports[`VtToastContainer snapshots with toasts 1`] = `
   
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container top-left"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -123,7 +227,15 @@ exports[`VtToastContainer snapshots with toasts 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container top-center"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -131,12 +243,21 @@ exports[`VtToastContainer snapshots with toasts 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container top-right"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
       <div
         class="Vue-Toastification__toast Vue-Toastification__toast--info top-right"
+        defaulttoastprops="[object Object]"
         style="transform: translateX(0px); opacity: 1;"
       >
         <svg
@@ -173,6 +294,7 @@ exports[`VtToastContainer snapshots with toasts 1`] = `
       </div>
       <div
         class="Vue-Toastification__toast Vue-Toastification__toast--default top-right"
+        defaulttoastprops="[object Object]"
         style="transform: translateX(0px); opacity: 1;"
       >
         <svg
@@ -213,7 +335,15 @@ exports[`VtToastContainer snapshots with toasts 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container bottom-left"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -221,7 +351,15 @@ exports[`VtToastContainer snapshots with toasts 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container bottom-center"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
@@ -229,12 +367,21 @@ exports[`VtToastContainer snapshots with toasts 1`] = `
   </div>
   <div>
     <transition-group-stub
+      appear="false"
       class="Vue-Toastification__container bottom-right"
+      css="true"
+      enteractiveclass="Vue-Toastification__bounce-enter-active"
+      leaveactiveclass="Vue-Toastification__bounce-leave-active"
+      moveclass="Vue-Toastification__bounce-move"
+      persisted="false"
+      tag="div"
+      type="animation"
     >
       
       
       <div
         class="Vue-Toastification__toast Vue-Toastification__toast--error bottom-right"
+        defaulttoastprops="[object Object]"
         style="transform: translateX(0px); opacity: 1;"
       >
         <svg

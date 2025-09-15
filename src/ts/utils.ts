@@ -161,7 +161,7 @@ const asContainerProps = (
     defaultComponentMessageProp,
     ...defaultToastProps
   } = options
-  const containerProps = {
+  const containerProps: ToastContainerOptions = {
     position,
     container,
     newestOnTop,
@@ -176,12 +176,14 @@ const asContainerProps = (
     defaultComponentMessageProp,
     defaultToastProps,
   }
-  const keys = Object.keys(containerProps) as (keyof ToastContainerOptions)[]
-  keys.forEach(
-    key =>
-      typeof containerProps[key] === "undefined" && delete containerProps[key]
-  )
-  return containerProps
+
+  return removeUndefined(containerProps)
+}
+
+export function removeUndefined<T extends object>(obj: T) {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([, v]) => v !== undefined)
+  ) as T
 }
 
 export {
