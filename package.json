@@ -78,9 +78,9 @@
     "vue": "^3.0.2"
   },
   "bugs": {
-    "url": "https://github.com/Maronato/vue-toastification/issues"
+    "url": "https://github.com/soundalertsdev/vue-toastification/issues"
   },
-  "homepage": "https://github.com/Maronato/vue-toastification#readme",
+  "homepage": "https://github.com/soundalertsdev/vue-toastification#readme",
   "keywords": [
     "vue",
     "notification",
@@ -89,6 +89,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Maronato/vue-toastification.git"
+    "url": "https://github.com/soundalertsdev/vue-toastification.git"
   }
 }
