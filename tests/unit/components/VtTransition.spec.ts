@@ -1,6 +1,7 @@
 import { TransitionGroup } from "vue"
 
 import { mount } from "@vue/test-utils"
+import { describe, expect, it, vi } from "vitest"
 
 import VtTransition from "../../../src/components/VtTransition.vue"
 
@@ -60,7 +61,7 @@ describe("VtTransition", () => {
     })
     const transition = wrapper.findComponent(TransitionGroup)
 
-    const done = jest.fn()
+    const done = vi.fn()
     const el = document.createElement("div")
 
     asEmitter(transition.vm).$emit("leave", el, done)
@@ -86,7 +87,7 @@ describe("VtTransition", () => {
     })
     const transition = wrapper.findComponent(TransitionGroup)
 
-    const done = jest.fn()
+    const done = vi.fn()
     const el = document.implementation.createDocument("xml", "element")
 
     asEmitter(transition.vm).$emit("leave", el, done)

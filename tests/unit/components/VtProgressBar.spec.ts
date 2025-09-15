@@ -1,6 +1,7 @@
 import { nextTick } from "vue"
 
 import { mount } from "@vue/test-utils"
+import { describe, expect, it, vi } from "vitest"
 
 import VtProgressBar from "../../../src/components/VtProgressBar.vue"
 import { VT_NAMESPACE } from "../../../src/ts/constants"
@@ -105,7 +106,7 @@ describe("VtProgressBar", () => {
   })
   it("removes listener on beforeDestroy", async () => {
     const wrapper = mount(VtProgressBar)
-    const spyRemoveEventListener = jest.spyOn(
+    const spyRemoveEventListener = vi.spyOn(
       wrapper.vm.$el,
       "removeEventListener"
     )

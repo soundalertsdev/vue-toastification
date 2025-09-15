@@ -1,6 +1,7 @@
 import { markRaw } from "vue"
 
 import { mount } from "@vue/test-utils"
+import { describe, expect, it } from "vitest"
 
 import VtErrorIcon from "../../../src/components/icons/VtErrorIcon.vue"
 import VtInfoIcon from "../../../src/components/icons/VtInfoIcon.vue"

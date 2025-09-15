@@ -1,6 +1,7 @@
 import { ComponentPublicInstance, h, nextTick } from "vue"
 
 import { mount, VueWrapper } from "@vue/test-utils"
+import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import { createToastInstance, EventBus } from "../../../src"
 import VtProgressBar from "../../../src/components/VtProgressBar.vue"
@@ -35,8 +36,8 @@ const defaultToastMessage = (message: string) => `${message} ×`
 
 describe("VtToastContainer", () => {
   beforeEach(() => {
-    jest.restoreAllMocks()
-    jest.resetAllMocks()
+    vi.restoreAllMocks()
+    vi.resetAllMocks()
   })
 
   it("snapshots with default value", async () => {
@@ -390,7 +391,7 @@ describe("VtToastContainer", () => {
     it("calls onClose when dismissing", async () => {
       const { toast } = await mountToastContainer()
 
-      const onClose = jest.fn()
+      const onClose = vi.fn()
       const toastID = toast.info("I'm a toast", { onClose })
       await nextTick()
 

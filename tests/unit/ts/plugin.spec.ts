@@ -1,8 +1,9 @@
 import { App } from "vue"
 
 import { isFunction } from "@vue/shared"
+import { beforeEach, describe, expect, it, vi } from "vitest"
 
-import { PluginOptions, ToastInterface, EventBus } from "../../../src"
+import { EventBus, PluginOptions, ToastInterface } from "../../../src"
 import * as useToast from "../../../src/ts/composables/useToast"
 import { globalEventBus } from "../../../src/ts/eventBus"
 import * as plugin from "../../../src/ts/plugin"
@@ -15,8 +16,8 @@ const pluginFunction = plugin.VueToastificationPlugin as AsFunction<
 
 describe("plugin", () => {
   beforeEach(() => {
-    jest.resetAllMocks()
-    jest.restoreAllMocks()
+    vi.resetAllMocks()
+    vi.restoreAllMocks()
   })
 
   describe("VueToastificationPlugin", () => {
@@ -25,11 +26,11 @@ describe("plugin", () => {
     })
     it("provides default if no options", () => {
       const toast = {} as ToastInterface
-      const createToastInstanceSpy = jest
+      const createToastInstanceSpy = vi
         .spyOn(useToast, "createToastInstance")
         .mockImplementation(() => toast)
 
-      const mockApp = { provide: jest.fn() } as unknown as App
+      const mockApp = { provide: vi.fn() } as unknown as App
 
       expect(createToastInstanceSpy).not.toHaveBeenCalled()
 
@@ -46,11 +47,11 @@ describe("plugin", () => {
 
     it("provides with options", () => {
       const toast = {} as ToastInterface
-      const createToastInstanceSpy = jest
+      const createToastInstanceSpy = vi
         .spyOn(useToast, "createToastInstance")
         .mockImplementation(() => toast)
 
-      const mockApp = { provide: jest.fn() } as unknown as App
+      const mockApp = { provide: vi.fn() } as unknown as App
 
       expect(createToastInstanceSpy).not.toHaveBeenCalled()
 
@@ -69,11 +70,11 @@ describe("plugin", () => {
 
     it("provides custom eventBus if provided", () => {
       const toast = {} as ToastInterface
-      const createToastInstanceSpy = jest
+      const createToastInstanceSpy = vi
         .spyOn(useToast, "createToastInstance")
         .mockImplementation(() => toast)
 
-      const mockApp = { provide: jest.fn() } as unknown as App
+      const mockApp = { provide: vi.fn() } as unknown as App
 
       expect(createToastInstanceSpy).not.toHaveBeenCalled()
 
@@ -91,11 +92,11 @@ describe("plugin", () => {
     })
 
     it("does not share app context by default", () => {
-      const createToastInstanceSpy = jest
+      const createToastInstanceSpy = vi
         .spyOn(useToast, "createToastInstance")
         .mockImplementation()
 
-      const mockApp = { provide: jest.fn() } as unknown as App
+      const mockApp = { provide: vi.fn() } as unknown as App
 
       expect(createToastInstanceSpy).not.toHaveBeenCalled()
 
@@ -107,11 +108,11 @@ describe("plugin", () => {
     })
 
     it("shares app context if required", () => {
-      const createToastInstanceSpy = jest
+      const createToastInstanceSpy = vi
         .spyOn(useToast, "createToastInstance")
         .mockImplementation()
 
-      const mockApp = { provide: jest.fn() } as unknown as App
+      const mockApp = { provide: vi.fn() } as unknown as App
 
       expect(createToastInstanceSpy).not.toHaveBeenCalled()
 

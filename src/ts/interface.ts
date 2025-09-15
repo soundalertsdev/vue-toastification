@@ -1,4 +1,4 @@
-import { createApp, nextTick } from "vue"
+import { type AppContext, createApp, nextTick } from "vue"
 
 import ToastContainer from "../components/VtToastContainer.vue"
 
@@ -10,7 +10,7 @@ import type {
   ToastOptionsAndContent,
 } from "../types/toast"
 
-import { TYPE, EVENTS } from "./constants"
+import { EVENTS, TYPE } from "./constants"
 import { EventBus, EventBusInterface } from "./eventBus"
 import { asContainerProps, getId, isUndefined } from "./utils"
 
@@ -143,11 +143,16 @@ function mountPlugin(options: PluginOptions) {
 
   if (shareAppContext && shareAppContext !== true) {
     const userApp = shareAppContext
-    app._context.components = userApp._context.components
-    app._context.directives = userApp._context.directives
-    app._context.mixins = userApp._context.mixins
-    app._context.provides = userApp._context.provides
-    app.config.globalProperties = userApp.config.globalProperties
+    app._context ??= {} as AppContext
+    if (userApp._context) {
+      app._context.components = userApp._context.components
+      app._context.directives = userApp._context.directives
+      app._context.mixins = userApp._context.mixins
+      app._context.provides = userApp._context.provides
+    }
+    if (userApp.config) {
+      app.config.globalProperties = userApp.config.globalProperties
+    }
   }
 
   const component = app.mount(document.createElement("div"))

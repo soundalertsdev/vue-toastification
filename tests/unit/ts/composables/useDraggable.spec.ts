@@ -5,13 +5,14 @@ import {
   defineComponent,
   h,
   nextTick,
+  onMounted,
   reactive,
   ref,
-  onMounted,
   Ref,
 } from "vue"
 
 import { mount } from "@vue/test-utils"
+import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import { useDraggable } from "../../../../src/ts/composables/useDraggable"
 
@@ -50,8 +51,8 @@ const TestComponent = (getEl?: (el: Ref<HTMLElement | undefined>) => void) =>
 
 describe("useDraggable", () => {
   beforeEach(() => {
-    jest.resetAllMocks()
-    jest.restoreAllMocks()
+    vi.resetAllMocks()
+    vi.restoreAllMocks()
   })
 
   const startPos: Pick<MouseEvent, "clientX" | "clientY"> = {
@@ -71,9 +72,9 @@ describe("useDraggable", () => {
 
   const getEl = (el: Ref<HTMLElement | undefined>) => {
     if (el.value) {
-      jest
-        .spyOn(el.value, "getBoundingClientRect")
-        .mockImplementation(() => clientRect as DOMRect)
+      vi.spyOn(el.value, "getBoundingClientRect").mockImplementation(
+        () => clientRect as DOMRect
+      )
     }
   }
 
@@ -81,7 +82,7 @@ describe("useDraggable", () => {
     (clientRect.right - clientRect.left) * draggablePercent
 
   it("Returns valid object", async () => {
-    const consoleSpy = jest.spyOn(console, "warn").mockImplementation()
+    const consoleSpy = vi.spyOn(console, "warn").mockImplementation()
 
     const el = ref()
     const props = reactive<Props>({ draggable: true, draggablePercent: 0.6 })

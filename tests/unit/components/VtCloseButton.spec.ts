@@ -1,6 +1,7 @@
 import { markRaw } from "vue"
 
 import { mount } from "@vue/test-utils"
+import { describe, expect, it, vi } from "vitest"
 
 import VtCloseButton from "../../../src/components/VtCloseButton.vue"
 import { VT_NAMESPACE } from "../../../src/ts/constants"
@@ -89,7 +90,7 @@ describe("VtCloseButton", () => {
     expect(wrapper.element).toMatchSnapshot()
   })
   it("attaches onClick listener", () => {
-    const onClick = jest.fn()
+    const onClick = vi.fn()
     const wrapper = mount(VtCloseButton, {
       props: {
         component: false,

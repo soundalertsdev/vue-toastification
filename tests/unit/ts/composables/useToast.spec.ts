@@ -1,6 +1,7 @@
 import { defineComponent, h } from "vue"
 
 import { mount } from "@vue/test-utils"
+import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import { EventBus, PluginOptions, ToastInterface } from "../../../../src"
 import * as useToast from "../../../../src/ts/composables/useToast"
@@ -9,7 +10,7 @@ import { globalEventBus } from "../../../../src/ts/eventBus"
 import * as interfaceModule from "../../../../src/ts/interface"
 import * as utils from "../../../../src/ts/utils"
 
-const consumerInjected = jest.fn()
+const consumerInjected = vi.fn()
 
 const Consumer = {
   setup() {
@@ -31,14 +32,14 @@ const Provider = createProvider()
 
 describe("useToast", () => {
   beforeEach(() => {
-    jest.resetAllMocks()
-    jest.restoreAllMocks()
+    vi.resetAllMocks()
+    vi.restoreAllMocks()
   })
 
   describe("useToast", () => {
     it("returns existing toast interface if eventBus is provided", () => {
       const expected = {} as ToastInterface
-      const createToastInstanceSpy = jest
+      const createToastInstanceSpy = vi
         .spyOn(useToast, "createToastInstance")
         .mockImplementation(() => expected)
 
@@ -54,7 +55,7 @@ describe("useToast", () => {
 
     it("returns global toast interface if not called inside setup()", () => {
       const expected = {} as ToastInterface
-      const createToastInstanceSpy = jest
+      const createToastInstanceSpy = vi
         .spyOn(useToast, "createToastInstance")
         .mockImplementation(() => expected)
 
@@ -68,7 +69,7 @@ describe("useToast", () => {
 
     it("returns global toast interface if called in non-provided setup()", () => {
       const expected = {} as ToastInterface
-      const createToastInstanceSpy = jest
+      const createToastInstanceSpy = vi
         .spyOn(useToast, "createToastInstance")
         .mockImplementation(() => expected)
 
@@ -83,7 +84,7 @@ describe("useToast", () => {
 
     it("returns provided toast interface if called in provided setup()", () => {
       const expected = {} as ToastInterface
-      const createToastInstanceSpy = jest
+      const createToastInstanceSpy = vi
         .spyOn(useToast, "createToastInstance")
         .mockImplementation(() => expected)
 
@@ -100,7 +101,7 @@ describe("useToast", () => {
 
   describe("provideToast", () => {
     it("does nothing if not called inside setup()", () => {
-      const createToastInstanceSpy = jest
+      const createToastInstanceSpy = vi
         .spyOn(useToast, "createToastInstance")
         .mockImplementation()
 
@@ -112,7 +113,7 @@ describe("useToast", () => {
 
     it("provides default if called inside setup()", () => {
       const expected = {} as ToastInterface
-      const createToastInstanceSpy = jest
+      const createToastInstanceSpy = vi
         .spyOn(useToast, "createToastInstance")
         .mockImplementation(() => expected)
 
@@ -127,7 +128,7 @@ describe("useToast", () => {
 
     it("provides with options if called inside setup()", () => {
       const expected = {} as ToastInterface
-      const createToastInstanceSpy = jest
+      const createToastInstanceSpy = vi
         .spyOn(useToast, "createToastInstance")
         .mockImplementation(() => expected)
 
@@ -144,8 +145,8 @@ describe("useToast", () => {
 
   describe("createToastInstance", () => {
     it("uses mock interface if not in browser", () => {
-      const isBrowserSpy = jest.spyOn(utils, "isBrowser")
-      const consoleSpy = jest.spyOn(console, "warn").mockImplementation()
+      const isBrowserSpy = vi.spyOn(utils, "isBrowser")
+      const consoleSpy = vi.spyOn(console, "warn").mockImplementation()
       isBrowserSpy.mockReturnValueOnce(false)
 
       const toast = useToast.createToastInstance()
@@ -162,7 +163,7 @@ describe("useToast", () => {
     it("builds interface using existing eventBus if provided", () => {
       const eventBus = new EventBus()
       const expected = {} as ToastInterface
-      const buildInterfaceSpy = jest
+      const buildInterfaceSpy = vi
         .spyOn(interfaceModule, "buildInterface")
         .mockImplementation(() => expected)
 
@@ -176,7 +177,7 @@ describe("useToast", () => {
 
     it("builds new interface using options if provided", () => {
       const expected = {} as ToastInterface
-      const buildInterfaceSpy = jest
+      const buildInterfaceSpy = vi
         .spyOn(interfaceModule, "buildInterface")
         .mockImplementation(() => expected)
 
@@ -191,7 +192,7 @@ describe("useToast", () => {
 
     it("builds default interface if no options are provided", () => {
       const expected = {} as ToastInterface
-      const buildInterfaceSpy = jest
+      const buildInterfaceSpy = vi
         .spyOn(interfaceModule, "buildInterface")
         .mockImplementation(() => expected)
 

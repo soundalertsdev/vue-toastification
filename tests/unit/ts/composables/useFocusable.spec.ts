@@ -3,6 +3,7 @@
 import { computed, defineComponent, h, nextTick, reactive, ref } from "vue"
 
 import { mount } from "@vue/test-utils"
+import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import { useFocusable } from "../../../../src/ts/composables/useFocusable"
 
@@ -29,12 +30,12 @@ const TestComponent = defineComponent({
 
 describe("useFocusable", () => {
   beforeEach(() => {
-    jest.resetAllMocks()
-    jest.restoreAllMocks()
+    vi.resetAllMocks()
+    vi.restoreAllMocks()
   })
 
   it("Returns valid object", async () => {
-    const consoleSpy = jest.spyOn(console, "warn").mockImplementation()
+    const consoleSpy = vi.spyOn(console, "warn").mockImplementation()
 
     const el = ref()
     const props = reactive<Props>({ pauseOnFocusLoss: false })
@@ -49,8 +50,8 @@ describe("useFocusable", () => {
   it("adds and removes event listeners", () => {
     const props = reactive<Props>({ pauseOnFocusLoss: true })
 
-    const addEventListenerSpy = jest.spyOn(window, "addEventListener")
-    const removeEventListenerSpy = jest.spyOn(window, "removeEventListener")
+    const addEventListenerSpy = vi.spyOn(window, "addEventListener")
+    const removeEventListenerSpy = vi.spyOn(window, "removeEventListener")
 
     expect(addEventListenerSpy).not.toHaveBeenCalled()
     expect(removeEventListenerSpy).not.toHaveBeenCalled()

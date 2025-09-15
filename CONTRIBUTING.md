@@ -53,7 +53,7 @@ These are all the files used by the plugin. Its folders and files are separated 
 ### `tests/`
 Inside the `tests/` folder you'll find some test utilities under `utils/` and the unit tests under `unit/`. All of the tests are separated by the files they are testing, under the same folder structure as in `src/`.
 
-We use [Jest](https://github.com/facebook/jest) and [Vue Test Utils](https://vue-test-utils.vuejs.org/) for testing.
+We use [Vitest](https://vitest.dev/) and [Vue Test Utils](https://vue-test-utils.vuejs.org/) for testing.
 
 If you've never written tests for Vue, you may find this [guide](https://lmiller1990.github.io/vue-testing-handbook/) helpful. You may also check out our [testing guide](#writing-tests) to learn how to write effective tests for this plugin.
 
@@ -112,7 +112,7 @@ Remember that automated test coverage may not catch all of your feature's intric
 ## Writing tests
 If your changes are related to anything **but** `VtToastContainer`, they may be treated as regular Vue components or Typescript code during tests.
 
-If you make changes to the UI, it'll probably break some [snapshots](https://jestjs.io/docs/en/snapshot-testing). Make sure that all logic tests pass before overwriting snapshots.
+If you make changes to the UI, it'll probably break some [snapshots](https://vitest.dev/guide/snapshot.html). Make sure that all logic tests pass before overwriting snapshots.
 
 If you plan on changing behavior related to `VtToastContainer` or plugin initialization, you'll face issues because of the way the plugin injects the container onto the page.
 

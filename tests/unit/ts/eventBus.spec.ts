@@ -1,3 +1,5 @@
+import { describe, expect, it, vi } from "vitest"
+
 import { EVENTS } from "../../../src/ts/constants"
 import {
   EventBus,
@@ -12,7 +14,7 @@ describe("EventBus", () => {
   })
   it("subscribes to events", () => {
     const eventBus = new EventBus()
-    const handler = jest.fn()
+    const handler = vi.fn()
     const eventName = EVENTS.DISMISS
 
     expect(eventBus["allHandlers"]).toEqual({})
@@ -28,7 +30,7 @@ describe("EventBus", () => {
 
   it("unsubscribes from events", () => {
     const eventBus = new EventBus()
-    const handler = jest.fn()
+    const handler = vi.fn()
     const eventName = EVENTS.DISMISS
 
     eventBus.on(eventName, handler)
@@ -41,8 +43,8 @@ describe("EventBus", () => {
 
   it("emits events", () => {
     const eventBus = new EventBus()
-    const handler1 = jest.fn()
-    const handler2 = jest.fn()
+    const handler1 = vi.fn()
+    const handler2 = vi.fn()
     const eventName = EVENTS.DISMISS
 
     expect(eventBus["allHandlers"]).toEqual({})

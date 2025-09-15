@@ -1,10 +1,12 @@
+import { describe, expect, it } from "vitest"
+
 import * as index from "../../src/index"
 import {
   createToastInstance,
   provideToast,
   useToast,
 } from "../../src/ts/composables/useToast"
-import { TYPE, POSITION } from "../../src/ts/constants"
+import { POSITION, TYPE } from "../../src/ts/constants"
 import { EventBus } from "../../src/ts/eventBus"
 import { VueToastificationPlugin } from "../../src/ts/plugin"
 

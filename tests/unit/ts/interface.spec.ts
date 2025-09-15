@@ -3,6 +3,7 @@ import * as vue from "vue"
 import { App, nextTick } from "vue"
 
 import { isFunction } from "@vue/shared"
+import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import VtToastContainer from "../../../src/components/VtToastContainer.vue"
 import { EventBus } from "../../../src/index"
@@ -13,26 +14,26 @@ import type { PluginOptions } from "../../../src/types/plugin"
 
 describe("interface", () => {
   beforeEach(() => {
-    jest.resetAllMocks()
-    jest.restoreAllMocks()
+    vi.resetAllMocks()
+    vi.restoreAllMocks()
   })
 
   describe("buildInterface", () => {
     let eventBus: EventBus
-    let eventsEmmited: Record<EVENTS, typeof jest.fn>
+    let eventsEmmited: Record<EVENTS, typeof vi.fn>
 
     beforeEach(() => {
       eventBus = new EventBus()
       eventsEmmited = Object.values(EVENTS).reduce((agg, eventName) => {
-        const handler = jest.fn()
+        const handler = vi.fn()
         eventBus.on(eventName, handler)
         return { ...agg, [eventName]: handler }
-      }, {} as { [eventName in EVENTS]: jest.Mock })
+      }, {} as { [eventName in EVENTS]: vi.Mock })
     })
 
     it("creates valid interface by default", async () => {
-      const mockApp = { mount: jest.fn() } as unknown as App
-      jest.spyOn(vue, "createApp").mockImplementation(() => mockApp)
+      const mockApp = { mount: vi.fn() } as unknown as App
+      vi.spyOn(vue, "createApp").mockImplementation(() => mockApp)
       const toast = buildInterface()
       await nextTick()
 
@@ -48,8 +49,8 @@ describe("interface", () => {
     })
 
     it("uses provided eventBus", async () => {
-      const mockApp = { mount: jest.fn() } as unknown as App
-      const createAppSpy = jest
+      const mockApp = { mount: vi.fn() } as unknown as App
+      const createAppSpy = vi
         .spyOn(vue, "createApp")
         .mockImplementation(() => mockApp)
       const toast = buildInterface({ eventBus })
@@ -74,8 +75,12 @@ describe("interface", () => {
     })
 
     it("mounts container by default", async () => {
-      const mockApp = { mount: jest.fn() } as unknown as App
-      const createAppSpy = jest
+      const mockApp = { mount: vi.fn() } as unknown as App
+      vi.mock("vue", async importActual => {
+        const actual = (await importActual()) as typeof vue
+        return { ...actual }
+      })
+      const createAppSpy = vi
         .spyOn(vue, "createApp")
         .mockImplementation(() => mockApp)
 
@@ -95,8 +100,12 @@ describe("interface", () => {
     })
 
     it("passes props to mounted container", async () => {
-      const mockApp = { mount: jest.fn() } as unknown as App
-      const createAppSpy = jest
+      const mockApp = { mount: vi.fn() } as unknown as App
+      vi.mock("vue", async importActual => {
+        const actual = (await importActual()) as typeof vue
+        return { ...actual }
+      })
+      const createAppSpy = vi
         .spyOn(vue, "createApp")
         .mockImplementation(() => mockApp)
 
@@ -116,10 +125,16 @@ describe("interface", () => {
 
     it("calls onMounted", async () => {
       const component = {}
-      const mockApp = { mount: jest.fn(() => component) } as unknown as App
-      jest.spyOn(vue, "createApp").mockImplementation(() => mockApp)
+      const mockApp = {
+        mount: vi.fn(() => component),
+      } as unknown as App
+      vi.mock("vue", async importActual => {
+        const actual = (await importActual()) as typeof vue
+        return { ...actual }
+      })
+      vi.spyOn(vue, "createApp").mockImplementation(() => mockApp)
 
-      const onMounted = jest.fn()
+      const onMounted = vi.fn()
       buildInterface({ onMounted })
 
       expect(onMounted).not.toHaveBeenCalled()
@@ -130,11 +145,10 @@ describe("interface", () => {
 
     it("shares app context", async () => {
       const mockApp = {
-        mount: jest.fn(),
-        _context: {},
+        mount: vi.fn(),
         config: {},
       } as unknown as App
-      jest.spyOn(vue, "createApp").mockImplementation(() => mockApp)
+      vi.spyOn(vue, "createApp").mockImplementation(() => mockApp)
 
       const userApp = {
         _context: {

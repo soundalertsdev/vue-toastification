@@ -6,3 +6,4 @@ coverage/
 .github/
 .vscode/
 vite.config.ts
+vitest.config.ts

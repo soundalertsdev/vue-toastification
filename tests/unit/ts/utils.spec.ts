@@ -1,6 +1,8 @@
 /* eslint-disable vue/one-component-per-file */
 import { defineComponent, h, isProxy, isRef, reactive, ref } from "vue"
 
+import { describe, expect, it, vi } from "vitest"
+
 import {
   getId,
   getX,
@@ -53,7 +55,7 @@ describe("getY", () => {
 describe("removeElement", () => {
   it("Calls own .remove method", () => {
     const element = document.createElement("div")
-    element.remove = jest.fn()
+    element.remove = vi.fn()
     expect(element.remove).not.toHaveBeenCalled()
     removeElement(element)
     expect(element.remove).toHaveBeenCalled()
@@ -65,7 +67,7 @@ describe("removeElement", () => {
 
     const parent = document.createElement("div")
     parent.appendChild(element)
-    parent.removeChild = jest.fn()
+    parent.removeChild = vi.fn()
 
     expect(parent.removeChild).not.toHaveBeenCalled()
     removeElement(element)

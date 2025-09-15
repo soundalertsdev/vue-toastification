@@ -3,6 +3,7 @@
 import { computed, defineComponent, h, reactive, ref } from "vue"
 
 import { mount } from "@vue/test-utils"
+import { describe, expect, it, vi, beforeEach } from "vitest"
 
 import { useHoverable } from "../../../../src/ts/composables/useHoverable"
 
@@ -29,12 +30,12 @@ const TestComponent = defineComponent({
 
 describe("useHoverable", () => {
   beforeEach(() => {
-    jest.resetAllMocks()
-    jest.restoreAllMocks()
+    vi.resetAllMocks()
+    vi.restoreAllMocks()
   })
 
   it("Returns valid object", async () => {
-    const consoleSpy = jest.spyOn(console, "warn").mockImplementation()
+    const consoleSpy = vi.spyOn(console, "warn").mockImplementation()
 
     const el = ref()
     const props = reactive<Props>({ pauseOnHover: false })

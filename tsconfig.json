@@ -15,7 +15,6 @@
     "strictNullChecks": true,
     "jsx": "preserve",
     "jsxImportSource": "vue",
-    "types": ["@types/jest"],
     "esModuleInterop": true,
     "skipLibCheck": true
   },
@@ -28,10 +27,6 @@
     "demo/**/*.ts",
     "demo/**/*.d.ts",
     "demo/**/*.tsx",
-    "demo/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.d.ts",
-    "tests/**/*.tsx",
-    "tests/**/*.vue"
+    "demo/**/*.vue"
   ]
 }
