@@ -1,6 +1,5 @@
-import path from "path"
-
 import vue from "@vitejs/plugin-vue"
+import path from "path"
 import { defineConfig } from "vite"
 
 const commonConfig = defineConfig({
@@ -31,7 +30,7 @@ const libConfig = defineConfig({
         },
         // Use `index.css` for css
         assetFileNames: assetInfo => {
-          if (assetInfo.name == "style.css") return "index.css"
+          if (assetInfo.name == "vue-toastification.css") return "index.css"
           return assetInfo.name
         },
       },
