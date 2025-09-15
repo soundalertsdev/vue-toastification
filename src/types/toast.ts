@@ -118,7 +118,7 @@ export declare interface ToastComponent {
   /**
    * Component that will be rendered.
    */
-  component: ToastContent
+  component?: ToastContent
   /**
    * `propName: propValue` pairs of props that will be passed to the component.
    *

@@ -1,3 +1,5 @@
+import type { Component } from "vue"
+
 import type { ClassNames, EventBusable } from "./common"
 import type {
   BaseToastOptions,
@@ -33,7 +35,9 @@ export declare interface BaseToastContainerOptions extends EventBusable {
    *
    *  Possible object properties can be any of `success error default info warning`
    */
-  toastDefaults?: Partial<Record<TYPE, ToastOptions>>
+  toastDefaults?: Partial<
+    Record<TYPE, ToastOptions & { props?: Record<string, unknown> }>
+  >
   /**
    * Callback to filter toasts during creation
    *
@@ -55,6 +59,12 @@ export declare interface BaseToastContainerOptions extends EventBusable {
    * Keep in mind that there is one container for each possible toast position.
    */
   containerClassName?: ClassNames
+  /**
+   * The default component to use for the toast.
+   */
+  defaultComponent?: Component | null
+  /** The prop of the default component that will receive the toast message. */
+  defaultComponentMessageProp?: string | null
 }
 
 export declare interface ToastContainerOptions

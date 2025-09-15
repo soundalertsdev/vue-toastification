@@ -28,7 +28,8 @@
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
+      "require": "./dist/index.umd.js",
+      "types": "./dist/types/index.d.ts"
     }
   },
   "typings": "dist/types/index.d.ts",

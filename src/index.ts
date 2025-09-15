@@ -1,4 +1,5 @@
 import type { ToastInterface } from "./ts/interface"
+import type { ToastID } from "./types/common"
 import type { PluginOptions } from "./types/plugin"
 
 import "./scss/index.scss"
@@ -22,4 +23,5 @@ export {
   TYPE,
   PluginOptions,
   ToastInterface,
+  ToastID,
 }

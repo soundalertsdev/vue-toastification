@@ -95,11 +95,21 @@ const removeElement = (el: Element) => {
   }
 }
 
-const getVueComponentFromObj = (obj: ToastContent): RenderableToastContent => {
+const getVueComponentFromObj = (
+  obj: ToastContent,
+  defaultComponent?: Component
+): RenderableToastContent => {
   if (isToastComponent(obj)) {
     // Recurse if component prop
-    return getVueComponentFromObj(obj.component)
+    return getVueComponentFromObj(obj.component!)
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  if (typeof obj === "object" && "props" in (obj as any) && defaultComponent) {
+    // Use default component with props
+    return toRaw(unref(defaultComponent))
+  }
+
   if (isJSX(obj)) {
     // Create render function for JSX
     return defineComponent({
@@ -108,11 +118,15 @@ const getVueComponentFromObj = (obj: ToastContent): RenderableToastContent => {
       },
     })
   }
+
   // Return regular string or raw object
   return typeof obj === "string" ? obj : toRaw(unref(obj))
 }
 
-const normalizeToastComponent = (obj: ToastContent): ToastContent => {
+const normalizeToastComponent = (
+  obj: ToastContent,
+  defaultComponent?: Component
+): ToastContent => {
   if (typeof obj === "string") {
     return obj
   }
@@ -120,7 +134,11 @@ const normalizeToastComponent = (obj: ToastContent): ToastContent => {
   const listeners = (
     hasProp(obj, "listeners") && isObject(obj.listeners) ? obj.listeners : {}
   ) as ToastComponent["listeners"]
-  return { component: getVueComponentFromObj(obj), props, listeners }
+  return {
+    component: getVueComponentFromObj(obj, defaultComponent),
+    props,
+    listeners,
+  }
 }
 
 const isBrowser = () => typeof window !== "undefined"
@@ -139,6 +157,8 @@ const asContainerProps = (
     filterBeforeCreate,
     filterToasts,
     containerClassName,
+    defaultComponent,
+    defaultComponentMessageProp,
     ...defaultToastProps
   } = options
   const containerProps = {
@@ -152,6 +172,8 @@ const asContainerProps = (
     filterBeforeCreate,
     filterToasts,
     containerClassName,
+    defaultComponent,
+    defaultComponentMessageProp,
     defaultToastProps,
   }
   const keys = Object.keys(containerProps) as (keyof ToastContainerOptions)[]
@@ -169,6 +191,7 @@ export {
   removeElement,
   isString,
   isNonEmptyString,
+  isToastComponent,
   isToastContent,
   getVueComponentFromObj,
   normalizeToastComponent,

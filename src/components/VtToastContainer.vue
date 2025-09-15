@@ -22,10 +22,11 @@ import { EVENTS, POSITION, VT_NAMESPACE } from "../ts/constants"
 import { ToastInterface } from "../ts/interface"
 import { TOAST_CONTAINER_DEFAULTS } from "../ts/propValidators"
 import {
-  removeElement,
   isFunction,
-  normalizeToastComponent,
+  isToastComponent,
   isUndefined,
+  normalizeToastComponent,
+  removeElement,
 } from "../ts/utils"
 
 import type { ToastID } from "../types/common"
@@ -47,6 +48,8 @@ interface ToastContainerProps {
   newestOnTop?: ToastContainerOptions["newestOnTop"]
   toastDefaults?: ToastContainerOptions["toastDefaults"]
   transition?: ToastContainerOptions["transition"]
+  defaultComponent?: ToastContainerOptions["defaultComponent"]
+  defaultComponentMessageProp?: ToastContainerOptions["defaultComponentMessageProp"]
 }
 
 const props = withDefaults(defineProps<ToastContainerProps>(), {
@@ -61,6 +64,9 @@ const props = withDefaults(defineProps<ToastContainerProps>(), {
   newestOnTop: TOAST_CONTAINER_DEFAULTS.newestOnTop,
   toastDefaults: TOAST_CONTAINER_DEFAULTS.toastDefaults,
   transition: TOAST_CONTAINER_DEFAULTS.transition,
+  defaultComponent: TOAST_CONTAINER_DEFAULTS.defaultComponent,
+  defaultComponentMessageProp:
+    TOAST_CONTAINER_DEFAULTS.defaultComponentMessageProp,
 })
 
 const positions = Object.values(POSITION)
@@ -121,13 +127,43 @@ const setToast = (props: ToastOptionsAndContent) => {
 }
 
 const addToast = (toastProps: ToastOptionsAndContent) => {
-  toastProps.content = normalizeToastComponent(toastProps.content)
+  toastProps.content = normalizeToastComponent(
+    toastProps.content,
+    containerProps.value.defaultComponent
+  )
   const typeProps =
     (toastProps.type && defaultToastTypeProps.value[toastProps.type]) || {}
   let toast: ToastOptionsAndContent | false = {
     ...defaultToastProps.value,
     ...typeProps,
     ...toastProps,
+  }
+  if (
+    isToastComponent(toast.content) ||
+    containerProps.value.defaultComponent
+  ) {
+    const messageProp = containerProps.value.defaultComponentMessageProp
+    toast.content =
+      typeof toast.content === "string"
+        ? messageProp
+          ? {
+              component: containerProps.value.defaultComponent,
+              props: {
+                ...typeProps?.props,
+                [messageProp]: toast.content,
+              },
+            }
+          : toast.content
+        : {
+            ...toast.content,
+            props: {
+              ...typeProps?.props,
+              ...(messageProp && {
+                [messageProp]: toast.content.message,
+              }),
+              ...toast.content.props,
+            },
+          }
   }
   const filterBeforeCreate = containerProps.value
     .filterBeforeCreate as NonNullable<

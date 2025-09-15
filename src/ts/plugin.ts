@@ -1,11 +1,11 @@
-import { Plugin } from "vue"
+import type { Plugin } from "vue"
 
 import type { PluginOptions } from "../types/plugin"
 
 import { createToastInstance, toastInjectionKey } from "./composables/useToast"
 import { globalEventBus } from "./eventBus"
 
-export const VueToastificationPlugin: Plugin = (
+export const VueToastificationPlugin: Plugin<[PluginOptions?]> = (
   App,
   options?: PluginOptions
 ) => {

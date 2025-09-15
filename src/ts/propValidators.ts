@@ -49,4 +49,6 @@ export const TOAST_CONTAINER_DEFAULTS: Required<
   toastDefaults: {},
   transition: `${VT_NAMESPACE}__bounce`,
   defaultToastProps: /* istanbul ignore next */ {},
+  defaultComponent: null,
+  defaultComponentMessageProp: null,
 }
