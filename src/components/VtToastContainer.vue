@@ -217,7 +217,44 @@ const updateToast = (params: {
     if (options.timeout && options.timeout === toasts[id].timeout) {
       options.timeout++
     }
-    setToast({ ...toasts[id], ...options })
+    const newToast: ToastOptionsAndContent | false = {
+      ...toasts[id],
+      ...options,
+    }
+    newToast.content = normalizeToastComponent(
+      newToast.content,
+      containerProps.value.defaultComponent
+    )
+    const typeProps =
+      (newToast.type && defaultToastTypeProps.value[newToast.type]) || {}
+    if (
+      isToastComponent(newToast.content) ||
+      containerProps.value.defaultComponent
+    ) {
+      const messageProp = containerProps.value.defaultComponentMessageProp
+      newToast.content =
+        typeof newToast.content === "string"
+          ? messageProp
+            ? {
+                component: containerProps.value.defaultComponent,
+                props: {
+                  ...typeProps?.props,
+                  [messageProp]: newToast.content,
+                },
+              }
+            : newToast.content
+          : {
+              ...newToast.content,
+              props: {
+                ...typeProps?.props,
+                ...(messageProp && {
+                  [messageProp]: newToast.content.message,
+                }),
+                ...newToast.content.props,
+              },
+            }
+    }
+    setToast(newToast)
   } else if (create) {
     addToast({ id, ...(options as ToastOptionsAndContent) })
   }
